@@ -24,6 +24,14 @@
         </div>
 
         <div class="form-group">
+          <label for="phone" class="col-form-label">Phone Number</label>
+          <input id="phone" type="text" name="phone" placeholder="Enter Phone"  value="{{old('phone')}}" class="form-control">
+          @error('phone')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+
+        <div class="form-group">
             <label for="inputPassword" class="col-form-label">Password</label>
           <input id="inputPassword" type="password" name="password" placeholder="Enter password"  value="{{old('password')}}" class="form-control">
           @error('password')
@@ -47,15 +55,14 @@
           @enderror
         </div>
         @php 
-        $roles=DB::table('users')->select('role')->get();
+       
         @endphp
         <div class="form-group">
             <label for="role" class="col-form-label">Role</label>
             <select name="role" class="form-control">
-                <option value="">-----Select Role-----</option>
-                @foreach($roles as $role)
-                    <option value="{{$role->role}}">{{$role->role}}</option>
-                @endforeach
+                <option value=""><-----Select Role-----></option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
             </select>
           @error('role')
           <span class="text-danger">{{$message}}</span>

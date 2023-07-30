@@ -43,6 +43,7 @@ class UsersController extends Controller
             [
                 'name' => 'string|required|max:30',
                 'email' => 'string|required|unique:users',
+                'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                 'password' => 'string|required',
                 'role' => 'required|in:admin,user',
                 'status' => 'required|in:active,inactive',
@@ -101,6 +102,7 @@ class UsersController extends Controller
             [
                 'name' => 'string|required|max:30',
                 'email' => 'string|required',
+                'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                 'role' => 'required|in:admin,user',
                 'status' => 'required|in:active,inactive',
                 'photo' => 'nullable|string',
