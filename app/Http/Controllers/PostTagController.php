@@ -50,9 +50,9 @@ class PostTagController extends Controller
         $data['slug'] = $slug;
         $status = PostTag::create($data);
         if ($status) {
-            request()->session()->flash('success', 'Post Tag Successfully added');
+            session()->flash('success', 'Post Tag Successfully added');
         } else {
-            request()->session()->flash('error', 'Please try again!!');
+            session()->flash('error', 'Please try again!!');
         }
         return redirect()->route('post-tag.index');
     }
@@ -87,9 +87,9 @@ class PostTagController extends Controller
         $data = $request->all();
         $status = $postTag->fill($data)->save();
         if ($status) {
-            request()->session()->flash('success', 'Post Tag Successfully updated');
+            session()->flash('success', 'Post Tag Successfully updated');
         } else {
-            request()->session()->flash('error', 'Please try again!!');
+            session()->flash('error', 'Please try again!!');
         }
         return redirect()->route('post-tag.index');
     }
@@ -107,9 +107,9 @@ class PostTagController extends Controller
         $status = $postTag->delete();
 
         if ($status) {
-            request()->session()->flash('success', 'Post Tag successfully deleted');
+            session()->flash('success', 'Post Tag successfully deleted');
         } else {
-            request()->session()->flash('error', 'Error while deleting post tag');
+            session()->flash('error', 'Error while deleting post tag');
         }
         return redirect()->route('post-tag.index');
     }
