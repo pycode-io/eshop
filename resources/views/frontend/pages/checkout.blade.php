@@ -316,30 +316,8 @@
     </style>
 @endpush
 @push('scripts')
-    <script src="{{ asset('frontend/js/nice-select/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/select2/js/select2.min.js') }}"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $("select.select2").select2();
-        });
-        $('select.nice-select').niceSelect();
-    </script>
-    <script>
-        function showMe(box) {
-            var checkbox = document.getElementById('shipping').style.display;
-            // alert(checkbox);
-            var vis = 'none';
-            if (checkbox == "none") {
-                vis = 'block';
-            }
-            if (checkbox == "block") {
-                vis = "none";
-            }
-            document.getElementById(box).style.display = vis;
-        }
-    </script>
     <script>
         // Function to calculate the amount in paise
         function calculateAmountInPaise() {
@@ -350,6 +328,16 @@
             var couponValue = parseFloat($('.coupon_price').data('price')) || 0;
             var totalAmountInPaise = (totalAmountInRupees + shippingCost - couponValue) * 100;
             return totalAmountInPaise;
+        }
+
+        // Function to update the total price on the page
+        function updateTotalPrice() {
+            var totalAmountInRupees = parseFloat('{{ Helper::totalCartPrice() }}');
+            var shippingCost = parseFloat($('select[name=shipping] option:selected').data('price')) || 0;
+            var couponValue = parseFloat($('.coupon_price').data('price')) || 0;
+            var totalAmount = (totalAmountInRupees + shippingCost - couponValue).toFixed(2);
+
+            $('#order_total_price span').text('₹' + totalAmount);
         }
 
         // Event listener for the "proceed to checkout" button
@@ -374,5 +362,13 @@
             var rzp = new Razorpay(options);
             rzp.open();
         });
+
+        // Event listener for the shipping select element
+        $('select[name=shipping]').change(function() {
+            updateTotalPrice(); // Call the updateTotalPrice() function whenever the shipping option changes
+        });
+
+        // Call the updateTotalPrice() function initially to set the correct initial total price
+        updateTotalPrice();
     </script>
 @endpush
