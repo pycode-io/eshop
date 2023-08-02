@@ -45,16 +45,19 @@
                   </div>
                   <form class="user"  method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..."  required autocomplete="email" autofocus>
+                    <div class="input-group">
+                      <div class="input-group-text"><i class="fa fa-users"></i></div>
+                      <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter Username">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" id="exampleInputPassword" placeholder="Password"  name="password" required autocomplete="current-password">
+                    <div class="input-group mt-3">
+
+                      <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                      <input type="text" class="form-control @error('password') is-invalid @enderror"  name="password" required placeholder="Enter Password" autocomplete="current-password" >
                          @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -62,7 +65,7 @@
                         @enderror
                     
                     </div>
-                    <div class="form-group">
+                    <div class="input-group mt-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -71,7 +74,7 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-block">
                       Login
                     </button>
                   </form>
