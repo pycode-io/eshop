@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="login-page bg-light">
 
   <div class="container">
 
@@ -41,7 +41,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h2 class="fs-1">Welcome Back!!!</h2>
                   </div>
                   <form class="user"  method="POST" action="{{ route('login') }}">
                     @csrf
